@@ -1,8 +1,7 @@
 <template>
   <div class="v-main-wrapper-vue">
-    <p>{{ title }}</p>
-    <v-catalog/>
-    <v-cart/>
+    <v-catalog />
+    <v-cart />
   </div>
 </template>
 
@@ -19,7 +18,6 @@ export default {
   },
   data() {
     return {
-      title: 'Hello'
     }
   },
   mounted() {
@@ -28,12 +26,8 @@ export default {
 </script>
 
 <style>
-  .v-main-wrapper-vue {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 900px;
-    margin: 0 auto;
-  }
+.v-main-wrapper-vue {
+  max-width: 900px;
+  margin: 0 auto;
+}
 </style>
