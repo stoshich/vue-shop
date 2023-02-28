@@ -4,11 +4,26 @@ import { createStore } from 'vuex'
 
 const store = createStore({
   state: {
-    products: []
+    products: [],
+    cart: []
   },
   mutations: {
     SET_PRODUCTS: (state, products) => {
       state.products = products
+    },
+    SET_CART: (state, product) => {
+      const repeatedItem = state.cart.find(item => item.id === product.id)
+      if (repeatedItem) {
+        repeatedItem.quantity += 1
+      } else {
+        state.cart.push({
+          ...product,
+          quantity: 1
+        })
+      }
+    },
+    REMOVE_ITEM_CART: (state, id) => {
+      state.cart = state.cart.filter(item => item.id !== id)
     }
   },
   actions: {
@@ -21,11 +36,20 @@ const store = createStore({
         console.log(error)
         return error
       }
+    },
+    ADD_TO_CART({ commit }, product) {
+      commit('SET_CART', product)
+    },
+    DELETE_FROM_CART({ commit }, id) {
+      commit('REMOVE_ITEM_CART', id)
     }
   },
   getters: {
     PRODUCTS(state) {
       return state.products
+    },
+    CART(state) {
+      return state.cart
     }
   }
 })
