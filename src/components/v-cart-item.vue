@@ -7,7 +7,7 @@
       <p>{{ productData.category }}</p>
     </div>
     <div class="v-cart-item__quantity">{{ productData.quantity }}</div>
-    <button @click="DELETE_FROM_CART(productData.id)">Delete</button>
+    <button @click="() => DELETE_FROM_CART(productData.id)">Delete</button>
   </div>
 </template>
 <script>
