@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="v-cart">
     <router-link to="/">
       <div class="v-catalog__to-cart">
       Back to catalog
@@ -12,6 +12,10 @@
       :key="product.id"
       :productData="product"
     />
+    <div class="v-cart__total">
+      <p class="total__name">Total: </p>
+      <p>{{cartTotalCost}}</p>
+    </div>
   </div>
 </template>
 <script>
@@ -26,10 +30,32 @@ export default {
   computed: {
     ...mapGetters([
       'CART'
-    ])
+    ]),
+    cartTotalCost() {
+      if (!this.CART.length) return 0
+      return this.CART.reduce((prev, product) => prev + product.price * product.quantity, 0)
+    }
   }
 }
 </script>
-<style>
-  
+<style lang="scss">
+  .v-cart {
+    margin-bottom: 100px;
+    &__total {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      padding: $padding*2 $padding*3;
+      display: flex;
+      justify-content: center;
+      color: #FFFFFF;
+      background-color: #46793a;
+      font-size: 20px;
+    }
+  }
+  .total__name {
+    margin-right: $margin * 2;
+
+  }
 </style>
