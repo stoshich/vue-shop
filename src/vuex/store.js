@@ -24,6 +24,18 @@ const store = createStore({
     },
     REMOVE_ITEM_CART: (state, id) => {
       state.cart = state.cart.filter(item => item.id !== id)
+    },
+    INCREMENT: (state, id) => {
+      state.cart = state.cart.map(item => {
+        if (item.id === id) return { ...item, quantity: item.quantity + 1 }
+        return item
+      })
+    },
+    DECREMENT: (state, id) => {
+      state.cart = state.cart.map(item => {
+        if (item.id === id) return { ...item, quantity: item.quantity - 1 }
+        return item
+      })
     }
   },
   actions: {
@@ -42,6 +54,12 @@ const store = createStore({
     },
     DELETE_FROM_CART({ commit }, id) {
       commit('REMOVE_ITEM_CART', id)
+    },
+    INCREMENT_CART_ITEM({ commit }, id) {
+      commit('INCREMENT', id)
+    },
+    DECREMENT_CART_ITEM({ commit }, id) {
+      commit('DECREMENT', id)
     }
   },
   getters: {
