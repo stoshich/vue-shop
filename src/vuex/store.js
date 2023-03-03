@@ -33,7 +33,7 @@ const store = createStore({
     },
     DECREMENT: (state, id) => {
       state.cart = state.cart.map(item => {
-        if (item.id === id) return { ...item, quantity: item.quantity - 1 }
+        if (item.id === id && item.quantity > 1) return { ...item, quantity: item.quantity - 1 }
         return item
       })
     }

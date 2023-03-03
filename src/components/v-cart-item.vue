@@ -7,9 +7,9 @@
       <p>{{ productData.category }}</p>
     </div>
     <div class="v-cart-item__quantity">
-      <span @click="() => DECREMENT_CART_ITEM(productData.id)">-</span>
+      <span class="quantity__btn" @click="() => DECREMENT_CART_ITEM(productData.id)">-</span>
       {{ productData.quantity }}
-      <span @click="() => INCREMENT_CART_ITEM(productData.id)">+</span>
+      <span class="quantity__btn" @click="() => INCREMENT_CART_ITEM(productData.id)">+</span>
     </div>
     <button @click="() => DELETE_FROM_CART(productData.id)">Delete</button>
   </div>
@@ -48,5 +48,8 @@ export default {
     img {
       max-width: 50px;
     }
+  }
+  .quantity__btn {
+    cursor: pointer;
   }
 </style>
